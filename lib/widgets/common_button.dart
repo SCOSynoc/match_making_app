@@ -9,7 +9,7 @@ class CommonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width*0.60,
+      width: MediaQuery.of(context).size.width*0.70,
       height: 50,
       child: OutlinedButton(
         onPressed: onPressed,

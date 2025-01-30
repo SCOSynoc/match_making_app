@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:match_making/screens/user_selection_screen.dart';
 import 'package:match_making/utils/decorations.dart';
+
+import '../utils/navigation.dart';
 
 
 class ProfileDetailsScreens extends StatefulWidget {
@@ -43,7 +46,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreens> {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              navigateToScreen(context,const UserSelectionScreen());
+            },
             child: Text(
               'Skip',
               style: theme.textTheme.displaySmall,
@@ -83,6 +88,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreens> {
                 TextField(
                   controller: _firstNameController,
                   decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelText: 'First Name',
                     fillColor: Colors.white,
                     border: Decorations.commonInputBorders,

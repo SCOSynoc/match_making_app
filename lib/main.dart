@@ -1,9 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:match_making/screens/all_matches_screen.dart';
+import 'package:match_making/screens/filter_screen.dart';
+import 'package:match_making/screens/match_screen.dart';
 import 'package:match_making/screens/onboard_screen.dart';
 import 'package:match_making/screens/signup_screen.dart';
 import 'package:match_making/utils/themes.dart';
+import 'package:match_making/widgets/image_carousal_widget.dart';
 import 'custom_card_swiper.dart';
 
 void main() {

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -127,10 +128,11 @@ class _CardSwiperState extends State<CardSwiper> with SingleTickerProviderStateM
 
         if (_currentIndex > 0)
           Positioned(
-            bottom: 50,
+            top: 20,
+            left: 20,
             child: ElevatedButton(
               onPressed: _undoLastSwipe,
-              child: Text("Undo"),
+              child: const Icon(CupertinoIcons.repeat, color: Colors.pink, size: 30,),
             ),
           ),
       ],
