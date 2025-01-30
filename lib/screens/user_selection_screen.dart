@@ -3,14 +3,25 @@ import 'package:match_making/screens/interest_selection_screen.dart';
 import 'package:match_making/utils/navigation.dart';
 
 
-class UserSelectionScreen extends StatelessWidget {
+class UserSelectionScreen extends StatefulWidget {
   const UserSelectionScreen({super.key});
+
+  @override
+  State<UserSelectionScreen> createState() => _UserSelectionScreenState();
+}
+
+class _UserSelectionScreenState extends State<UserSelectionScreen> {
+
+
+  bool isManSelected = false;
+  bool isWomenSelected = false;
+  bool isSelected = false;
+
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    bool isSelected = false;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -59,19 +70,29 @@ class UserSelectionScreen extends StatelessWidget {
               // Dropdown Buttons
               CustomDropdownButton(
                 label: "Woman",
-                isSelected: isSelected,
+                isSelected: isWomenSelected,
                 onTap: () {
-                  // Handle Woman Selection
-                  isSelected = !isSelected;
+                  setState(() {
+                    // Handle Woman Selection
+                    isWomenSelected= !isWomenSelected;
+                    isManSelected = false;
+                    isSelected = false;
+                  });
+
                 },
               ),
               SizedBox(height: screenHeight * 0.02),
               CustomDropdownButton(
                 label: "Man",
-                isSelected: true,
+                isSelected: isManSelected,
                 onTap: () {
-                  // Handle Man Selection
-                  isSelected = !isSelected;
+                  setState(() {
+                    // Handle Man Selection
+                    isManSelected = !isManSelected;
+                    isWomenSelected = false;
+                    isSelected = false;
+                  });
+
                 },
               ),
               SizedBox(height: screenHeight * 0.02),
@@ -79,8 +100,12 @@ class UserSelectionScreen extends StatelessWidget {
                 label: "Choose another",
                 isSelected: isSelected,
                 onTap: () {
-                  // Handle Choose Another Selection
-                  isSelected = !isSelected;
+                  setState(() {
+                    // Handle Choose Another Selection
+                    isManSelected = false;
+                    isWomenSelected = false;
+                    isSelected = !isSelected;
+                  });
                 },
               ),
               const Spacer(),
@@ -118,6 +143,8 @@ class UserSelectionScreen extends StatelessWidget {
     );
   }
 }
+
+
 
 // Custom Dropdown Button Widget
 class CustomDropdownButton extends StatelessWidget {
