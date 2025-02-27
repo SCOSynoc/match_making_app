@@ -57,13 +57,9 @@ class _MatchScreenState extends State<MatchScreen> with SingleTickerProviderStat
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Match',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: Theme.of(context).textTheme.displayMedium
               ),
               SizedBox(height: screenHeight * 0.03),
               SizedBox(
@@ -117,11 +113,11 @@ class _MatchScreenState extends State<MatchScreen> with SingleTickerProviderStat
                         decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.pink, width: 3),
+                          border: Border.all(color: Theme.of(context).primaryColorLight, width: 3),
                         ),
                         child: Icon(
                           Icons.favorite,
-                          color: Colors.pink,
+                          color: Theme.of(context).primaryColorLight,
                           size: screenHeight * 0.05,
                         ),
                       ),
@@ -132,33 +128,24 @@ class _MatchScreenState extends State<MatchScreen> with SingleTickerProviderStat
               SizedBox(height: screenHeight * 0.05),
               Text(
                 "It's a match,",
-                style: TextStyle(
-                  fontSize: screenHeight * 0.04,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize:screenHeight * 0.04, fontWeight: FontWeight.bold ),
               ),
               Text(
                 'Jake!',
-                style: TextStyle(
-                  fontSize: screenHeight * 0.035,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.pink,
-                ),
+                style:Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontSize:screenHeight * 0.035, fontWeight: FontWeight.bold
+                )
               ),
               SizedBox(height: screenHeight * 0.02),
               Text(
                 'Start a conversation now with each other',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: screenHeight * 0.02,
-                  color: Colors.grey,
-                ),
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize:screenHeight * 0.02 ),
               ),
               SizedBox(height: screenHeight * 0.05),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink,
+                  backgroundColor: Theme.of(context).primaryColorLight,
                   padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.3, vertical: 15),
                   shape: RoundedRectangleBorder(
@@ -168,7 +155,7 @@ class _MatchScreenState extends State<MatchScreen> with SingleTickerProviderStat
                 onPressed: () {},
                 child: Text(
                   'Say hello',
-                  style: TextStyle(fontSize: screenHeight * 0.02),
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(fontSize:screenHeight * 0.02 ),
                 ),
               ),
               SizedBox(height: screenHeight * 0.02),
@@ -176,10 +163,7 @@ class _MatchScreenState extends State<MatchScreen> with SingleTickerProviderStat
                 onPressed: () {},
                 child: Text(
                   'Keep swiping',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: screenHeight * 0.02,
-                  ),
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize:screenHeight * 0.02 ),
                 ),
               ),
             ],

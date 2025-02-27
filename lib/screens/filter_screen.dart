@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:match_making/utils/decorations.dart';
+import 'package:match_making/utils/themes.dart';
+
+import '../widgets/filter_button.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -37,7 +41,12 @@ class _FilterScreenState extends State<FilterScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.arrow_back_ios, color: Colors.grey),
+                      InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_ios, color: Colors.grey)
+                      ),
                       Text(
                         'Discover',
                         style: TextStyle(
@@ -46,7 +55,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           color: Colors.black,
                         ),
                       ),
-                      Icon(Icons.filter_alt, color: Colors.pink),
+                      Icon(Icons.filter_alt, color: Theme.of(context).primaryColorLight),
                     ],
                   ),
                 ),
@@ -72,17 +81,11 @@ class _FilterScreenState extends State<FilterScreen> {
                         children: [
                           Text(
                             'Filters',
-                            style: TextStyle(
-                              fontSize: screenHeight * 0.03,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                           Text(
                             'Clear',
-                            style: TextStyle(
-                              fontSize: screenHeight * 0.02,
-                              color: Colors.pink,
-                            ),
+                            style:Theme.of(context).textTheme.labelMedium,
                           ),
                         ],
                       ),
@@ -138,16 +141,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       SizedBox(height: screenHeight * 0.01),
                     DropdownButtonFormField<String>(
                       value: selectedLocation,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: screenHeight * 0.015,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey.shade300),
-                        ),
-                      ),
+                      decoration: Decorations.commonDropDownDeco(context),
                       items: locations.map((location) {
                         return DropdownMenuItem(
                           value: location,
@@ -173,7 +167,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         min: 0,
                         max: 100,
                         divisions: 100,
-                        activeColor: Colors.pink,
+                        activeColor: Theme.of(context).primaryColorLight,
                         onChanged: (value) {
                           setState(() {
                             distance = value;
@@ -193,7 +187,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         min: 18,
                         max: 100,
                         divisions: 82,
-                        activeColor: Colors.pink,
+                        activeColor: Theme.of(context).primaryColorLight,
                         onChanged: (values) {
                           setState(() {
                             ageRange = values;
@@ -207,7 +201,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       Spacer(),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.pink,
+                          backgroundColor: Theme.of(context).primaryColorLight,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -219,10 +213,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         child: Center(
                           child: Text(
                             'Continue',
-                            style: TextStyle(
-                              fontSize: screenHeight * 0.02,
-                              color: Colors.white,
-                            ),
+                            style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ),
                       ),
@@ -238,35 +229,3 @@ class _FilterScreenState extends State<FilterScreen> {
   }
 }
 
-class FilterButton extends StatelessWidget {
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  FilterButton({required this.label, required this.isSelected, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            color: isSelected ? Colors.pink : Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Text(
-              label,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

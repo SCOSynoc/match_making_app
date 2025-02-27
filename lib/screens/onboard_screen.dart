@@ -5,6 +5,8 @@ import 'package:match_making/utils/themes.dart';
 import 'package:match_making/widgets/common_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
@@ -58,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: _currentPage == index ? 12 : 8,
                       height: _currentPage == index ? 12 : 8,
                       decoration: BoxDecoration(
-                        color: _currentPage == index ? Colors.blue : Colors.grey.shade300,
+                        color: _currentPage == index ? Theme.of(context).primaryColorLight : Colors.grey.shade300,
                         shape: BoxShape.circle,
                       ),
                     );
@@ -66,7 +68,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 const SizedBox(height: 24),
                 CommonButton(
-                  backgroundColor: AppThemes.lightTheme.primaryColorDark,
+                  backgroundColor: Theme.of(context).primaryColorLight,
                   onPressed: () {
                     if (_currentPage == 2) {
                       // Navigate to the next screen or finish
@@ -113,13 +115,13 @@ class OnboardingPage extends StatelessWidget {
           SizedBox(height: 32),
           Text(
             title,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
           SizedBox(height: 16),
           Text(
             description,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         ],
       ),

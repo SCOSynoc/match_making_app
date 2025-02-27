@@ -18,3 +18,15 @@ void navigateAndRemovePush(BuildContext context, Widget screen,){
           (Route<dynamic> route) => false
   );
 }
+void showSnackBar({required BuildContext context, required String content , required Function() onPressed}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(
+              content: Text(content,style: Theme.of(context).textTheme.labelMedium,),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            ),
+                snackBarAnimationStyle: AnimationStyle(curve: Curves.bounceIn)
+            );
+
+}
+
+

@@ -1,6 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:match_making/bloc/ProfileBloc/profile_states.dart';
 import 'package:match_making/screens/all_matches_screen.dart';
 import 'package:match_making/screens/filter_screen.dart';
 import 'package:match_making/screens/match_screen.dart';
@@ -8,9 +12,16 @@ import 'package:match_making/screens/onboard_screen.dart';
 import 'package:match_making/screens/signup_screen.dart';
 import 'package:match_making/utils/themes.dart';
 import 'package:match_making/widgets/image_carousal_widget.dart';
+import 'bloc/AuthBloc/auth_bloc.dart';
+import 'bloc/ProfileBloc/profile_bloc.dart';
+import 'bloc_observer.dart';
 import 'custom_card_swiper.dart';
+import 'local_storage/hive_service.dart';
 
-void main() {
+void main() async{
+  Bloc.observer = AppBlocObserver();
+  await Hive.initFlutter();
+  await Hive.openBox(localBox);
   runApp(const MyApp());
 }
 
@@ -19,13 +30,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppThemes.lightTheme,
-      darkTheme: AppThemes.darkTheme,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Enhanced Tinder Swiper")),
-        body: OnboardingScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc()),
+        BlocProvider(create: (context) => ProfileBloc())
+      ],
+      child: MaterialApp(
+        theme: AppThemes.lightTheme,
+        darkTheme: AppThemes.darkTheme,
+        debugShowCheckedModeBanner: false,
+        home: const Scaffold(
+          body: OnboardingScreen(),
+        ),
       ),
     );
   }

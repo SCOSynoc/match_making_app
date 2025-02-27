@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:match_making/screens/otp_verification_screen.dart';
+import 'package:match_making/screens/profile_detail_screen2.dart';
 import 'package:match_making/utils/decorations.dart';
 import 'package:match_making/utils/themes.dart';
 import 'package:match_making/widgets/common_button.dart';
+
+import '../widgets/common_textfield.dart';
 
 
 class PhoneVerificationScreen extends StatelessWidget {
@@ -55,13 +58,9 @@ class PhoneVerificationScreen extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     flex: 5,
-                    child: TextFormField(
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        hintText: '331 623 8413',
-                        hintStyle:Theme.of(context).textTheme.labelSmall ,
-                        border: Decorations.commonInputBorders,
-                      ),
+                    child: CommonMainTextField(
+                      controller: TextEditingController(),
+                      hintText: "331 623 8413",
                     ),
                   ),
                 ],

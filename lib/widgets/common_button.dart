@@ -8,14 +8,17 @@ class CommonButton extends StatelessWidget {
   final String? text;
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: MediaQuery.of(context).size.width*0.70,
+      width: screenWidth*0.70,
       height: 50,
-      child: OutlinedButton(
+      child: ElevatedButton(
         onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
+        style: ElevatedButton.styleFrom(
+            foregroundColor: Theme.of(context).primaryColorDark,
             backgroundColor: backgroundColor,
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+            padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
             textStyle: const TextStyle(fontSize: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
         ),
@@ -24,3 +27,5 @@ class CommonButton extends StatelessWidget {
     );
   }
 }
+
+

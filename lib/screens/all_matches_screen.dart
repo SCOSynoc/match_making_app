@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:match_making/utils/themes.dart';
 
 class MatchesScreen extends StatelessWidget {
 
@@ -48,10 +49,10 @@ class MatchesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               buildSectionTitle('Today'),
-              buildMatchesGrid(matchesToday,responsiveWidth),
+              buildMatchesGrid(matchesToday,responsiveWidth, context),
               const SizedBox(height: 16),
               buildSectionTitle('Yesterday'),
-              buildMatchesGrid(matchesYesterday,responsiveWidth),
+              buildMatchesGrid(matchesYesterday,responsiveWidth,context),
             ],
           ),
         ),
@@ -69,7 +70,7 @@ class MatchesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildMatchesGrid(List<Map<String, dynamic>> matches, double width) {
+  Widget buildMatchesGrid(List<Map<String, dynamic>> matches, double width, BuildContext context) {
 
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
@@ -83,12 +84,12 @@ class MatchesScreen extends StatelessWidget {
       itemCount: matches.length,
       itemBuilder: (context, index) {
         final match = matches[index];
-        return buildMatchCard(match);
+        return buildMatchCard(match, context);
       },
     );
   }
 
-  Widget buildMatchCard(Map<String, dynamic> match) {
+  Widget buildMatchCard(Map<String, dynamic> match, BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -117,7 +118,7 @@ class MatchesScreen extends StatelessWidget {
                 children: [
                   Text(
                     '${match['name']}, ${match['age']}',
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                   const Row(
                     children: [

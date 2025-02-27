@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:match_making/screens/all_matches_screen.dart';
 import 'package:match_making/screens/discover_screen.dart';
 import 'package:match_making/screens/messages_screen.dart';
+import 'package:match_making/utils/themes.dart';
 
 
 class DashboardScreen extends StatefulWidget {
@@ -34,8 +35,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               _currentIndex = index;
             });
           },
-          selectedItemColor: Colors.pink,
-          unselectedItemColor: Colors.grey,
+          selectedItemColor: getMaterialColor(Colors.red),
+          unselectedItemColor: getMaterialColor(Colors.grey),
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: [
@@ -46,7 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   shape: BoxShape.circle,
                 ),
                 padding: const EdgeInsets.all(8),
-                child: ClipOval(child: SvgPicture.asset('assets/images/1.svg', height: 50, width: 50,colorFilter:ColorFilter.mode(_currentIndex == 0 ? Colors.pink : Colors.transparent , BlendMode.color))),
+                child: ClipOval(child: SvgPicture.asset('assets/images/1.svg', height: 50, width: 50,colorFilter:ColorFilter.mode(_currentIndex == 0 ? Theme.of(context).primaryColorLight : Colors.transparent , BlendMode.color))),
               ),
               label: "Home",
             ),
@@ -57,7 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   shape: BoxShape.circle,
                 ),
                 padding: const EdgeInsets.all(8),
-                child: ClipOval(child: SvgPicture.asset('assets/images/2.svg', height: 50, width: 50, colorFilter:ColorFilter.mode(_currentIndex == 1 ? Colors.pink : Colors.transparent , BlendMode.color) ,)),
+                child: ClipOval(child: SvgPicture.asset('assets/images/2.svg', height: 50, width: 50, colorFilter:ColorFilter.mode(_currentIndex == 1 ? Theme.of(context).primaryColorLight : Colors.transparent , BlendMode.color) ,)),
               ),
               label: "matches",
             ),
@@ -68,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   shape: BoxShape.circle,
                 ),
                 padding: const EdgeInsets.all(8),
-                child: ClipOval(child: SvgPicture.asset('assets/images/3.svg', height: 50, width: 50, colorFilter:ColorFilter.mode(_currentIndex == 2 ? Colors.pink : Colors.transparent , BlendMode.color))),
+                child: ClipOval(child: SvgPicture.asset('assets/images/3.svg', height: 50, width: 50, colorFilter:ColorFilter.mode(_currentIndex == 2 ? Theme.of(context).primaryColorLight: Colors.transparent , BlendMode.color))),
               ),
               label: "Chat",
             ),
@@ -79,7 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   shape: BoxShape.circle,
                 ),
                 padding: const EdgeInsets.all(8),
-                child: ClipOval(child: SvgPicture.asset('assets/images/4.svg', height: 50, width: 50,colorFilter:ColorFilter.mode(_currentIndex == 3 ? Colors.pink : Colors.transparent , BlendMode.color))),
+                child: ClipOval(child: SvgPicture.asset('assets/images/4.svg', height: 50, width: 50,colorFilter:ColorFilter.mode(_currentIndex == 3 ? Theme.of(context).primaryColorLight : Colors.transparent , BlendMode.color))),
               ),
               label: "Profile",
             ),
